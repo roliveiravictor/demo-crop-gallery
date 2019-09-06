@@ -1,0 +1,52 @@
+apply plugin: 'com.novoda.static-analysis'
+apply plugin: 'io.gitlab.arturbosch.detekt'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+staticAnalysis {
+
+    /*
+     *
+     *  https://github.com/novoda/gradle-static-analysis-plugin/blob/master/docs/advanced-usage.md
+     *  [Penalty Profiles, Failure Thresholds, Report with a base URL, etc]
+     *
+     */
+
+    penalty failOnErrors
+
+    checkstyle {
+        toolVersion '8.8'
+        configFile rootProject.file('sca-config/checkstyle-modules.xml')
+        includeVariants { variant -> variant.name.contains('debug') }
+    }
+
+    pmd {
+        toolVersion '6.1.0'
+        ruleSetFiles = rootProject.files('sca-config/pmd-rules.xml')
+        ruleSets = []
+        includeVariants { variant -> variant.name.contains('debug') }
+    }
+
+    findbugs {
+        toolVersion '3.0.1'
+        excludeFilter rootProject.file('sca-config/findbugs-excludes.xml')
+        includeVariants { variant -> variant.name.contains('debug') }
+    }
+
+    lintOptions {
+        lintConfig rootProject.file('sca-config/lint-config.xml')
+        checkReleaseBuilds false
+        warningsAsErrors false
+    }
+
+    detekt {
+        config = rootProject.files('sca-config/detekt-config.yml')
+        filters = '.*/resources/.*,.*/tmp/.*'
+    }
+
+    ktlint {
+        android.set(true)
+        reporters = [ReporterType.CHECKSTYLE]
+
+        includeVariants { variant -> variant.name.contains('debug') }
+    }
+}

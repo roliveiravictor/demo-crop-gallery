@@ -1,0 +1,2 @@
+include ':app', ':arch-permissions'
+rootProject.name='Image Bucket'
