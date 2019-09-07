@@ -31,5 +31,4 @@ class MainIdlingResource(private val resourceName: String) : IdlingResource {
             throw IllegalArgumentException("Counter has been corrupted!")
         }
     }
-
 }

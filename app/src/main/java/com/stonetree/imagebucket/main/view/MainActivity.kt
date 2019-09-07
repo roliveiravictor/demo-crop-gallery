@@ -18,8 +18,12 @@ import com.stonetree.imagebucket.core.getCachedImage
 import com.stonetree.imagebucket.databinding.ActivityMainBinding
 import com.stonetree.imagebucket.main.view.adapter.MainAdapter
 import com.stonetree.imagebucket.main.viewmodel.MainViewModel
-import com.theartofdev.edmodo.cropper.CropImage.*
-import manifest.stonetree.com.br.permissions.constants.Permission.*
+import com.theartofdev.edmodo.cropper.CropImage.activity
+import com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+import com.theartofdev.edmodo.cropper.CropImage.getActivityResult
+import manifest.stonetree.com.br.permissions.constants.Permission.CAMERA
+import manifest.stonetree.com.br.permissions.constants.Permission.READ_EXTERNAL_STORAGE
+import manifest.stonetree.com.br.permissions.constants.Permission.WRITE_EXTERNAL_STORAGE
 import manifest.stonetree.com.br.permissions.feature.IManifestCallback
 import manifest.stonetree.com.br.permissions.feature.Manifest
 import manifest.stonetree.com.br.permissions.feature.model.Device

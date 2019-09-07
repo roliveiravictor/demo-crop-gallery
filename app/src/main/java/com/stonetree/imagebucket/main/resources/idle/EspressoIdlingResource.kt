@@ -13,6 +13,4 @@ object EspressoIdlingResource {
     fun decrement() = countingIdlingResource.decrement()
 
     fun getIdlingResource(): IdlingResource = countingIdlingResource
-
-
 }

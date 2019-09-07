@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.annotation.VisibleForTesting
 import androidx.databinding.BindingAdapter
+import com.stonetree.imagebucket.core.Constants.BITMAP_QUALITY
 import com.stonetree.imagebucket.core.Constants.INTENT_EXTRA_DATA
 import com.stonetree.imagebucket.core.NetworkState.Companion.LOADING
 import com.stonetree.imagebucket.core.Status.FAILED
@@ -54,7 +55,7 @@ fun Intent.getCachedImage(context: Context): File {
     val image = createTemporaryFile(context)
     val output = FileOutputStream(image)
     (this?.extras?.get(INTENT_EXTRA_DATA) as Bitmap).let { bitmap ->
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, output)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, BITMAP_QUALITY, output)
         output.flush()
         output.close()
     }

@@ -6,5 +6,5 @@ object Constants {
     const val REQUEST_CODE = 101
     const val FIREBASE_IMAGES_PATH = "images/"
     const val INTENT_EXTRA_DATA = "data"
-
+    const val BITMAP_QUALITY = 100
 }
