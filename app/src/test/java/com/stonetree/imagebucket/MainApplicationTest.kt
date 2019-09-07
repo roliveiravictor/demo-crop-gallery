@@ -6,6 +6,6 @@ class MainApplicationTest {
 
     @Test
     fun test_onCreate_shouldCreateModules() {
-
+        // Do nothing
     }
 }
