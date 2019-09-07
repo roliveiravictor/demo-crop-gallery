@@ -65,7 +65,9 @@ dependencies {
 
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.koin:koin-test:$koin_test_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
