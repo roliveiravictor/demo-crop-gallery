@@ -25,7 +25,6 @@ import manifest.stonetree.com.br.permissions.feature.Manifest
 import manifest.stonetree.com.br.permissions.feature.model.Device
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
     private val vm: MainViewModel by viewModel()
 
@@ -119,7 +118,11 @@ class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
     }
 
     override fun onPermissionDenied() {
-        Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_LONG)
+        Toast.makeText(
+            this,
+            getString(R.string.permission_denied),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun delete(name: String) {
