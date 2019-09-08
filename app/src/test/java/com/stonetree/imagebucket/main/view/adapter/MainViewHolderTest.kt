@@ -4,8 +4,8 @@ import android.net.Uri
 import com.stonetree.imagebucket.main.model.MainModel
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
-import org.mockito.Mockito.verify
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 class MainViewHolderTest {
 
