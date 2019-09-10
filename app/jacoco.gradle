@@ -1,0 +1,39 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/reports")
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def excludes = [
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Injector*.*',
+            '**/R$*.class',
+            '**/*Test*.*',
+            '**/R.class',
+    ]
+
+    getClassDirectories().setFrom(fileTree([
+            dir: "$project.buildDir/tmp/kotlin-classes/debug",
+            excludes: excludes
+    ]))
+
+    getSourceDirectories().setFrom(files([
+            "$project.projectDir/src/main/java",
+            "$project.projectDir/src/main/kotlin",
+    ]))
+
+    getExecutionData().setFrom(files("$buildDir/jacoco/testDebugUnitTest.exec"))
+}
