@@ -7,7 +7,6 @@ import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
         }
     }
 
-    @VisibleForTesting
     private fun bindXml(
         data: ActivityMainBinding,
         adapter: MainAdapter
