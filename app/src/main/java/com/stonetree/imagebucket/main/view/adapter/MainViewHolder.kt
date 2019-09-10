@@ -2,7 +2,7 @@ package com.stonetree.imagebucket.main.view.adapter
 
 import android.view.View
 import com.bumptech.glide.Glide
-import com.stonetree.imagebucket.core.BaseViewHolder
+import com.stonetree.imagebucket.core.viewholder.BaseViewHolder
 import com.stonetree.imagebucket.databinding.ListItemMainBinding
 import com.stonetree.imagebucket.main.model.MainModel
 import com.stonetree.imagebucket.main.view.IPicture

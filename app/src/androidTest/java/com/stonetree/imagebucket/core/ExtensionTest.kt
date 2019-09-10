@@ -1,18 +1,21 @@
 package com.stonetree.imagebucket.core
 
+import android.R
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase.assertNotNull
-import org.junit.Test
-import org.junit.runner.RunWith
-import android.content.Intent
-import android.R
-import android.graphics.BitmapFactory
-import com.stonetree.imagebucket.core.Constants.INTENT_EXTRA_DATA
+import com.stonetree.imagebucket.core.constants.Constants.INTENT_EXTRA_DATA
+import com.stonetree.imagebucket.core.extensions.createTemporaryFile
+import com.stonetree.imagebucket.core.extensions.downloadReference
+import com.stonetree.imagebucket.core.extensions.getCachedImage
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotNull
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ExtensionTest {

@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.stonetree.imagebucket.core.Constants
+import com.stonetree.imagebucket.core.constants.Constants
 import com.stonetree.imagebucket.core.getCachedImage
 import com.stonetree.imagebucket.core.launchIdling
 import com.stonetree.imagebucket.main.model.MainModel

@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.core
+package com.stonetree.imagebucket.core.constants
 
 object Constants {
 

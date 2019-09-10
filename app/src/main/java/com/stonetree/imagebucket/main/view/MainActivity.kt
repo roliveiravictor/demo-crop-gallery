@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.stonetree.imagebucket.R
-import com.stonetree.imagebucket.core.Constants.IMAGE_MYME_TYPE
-import com.stonetree.imagebucket.core.Constants.REQUEST_CODE
-import com.stonetree.imagebucket.core.getCachedImage
+import com.stonetree.imagebucket.core.constants.Constants.IMAGE_MYME_TYPE
+import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
+import com.stonetree.imagebucket.core.extensions.getCachedImage
 import com.stonetree.imagebucket.databinding.ActivityMainBinding
 import com.stonetree.imagebucket.main.view.adapter.MainAdapter
 import com.stonetree.imagebucket.main.viewmodel.MainViewModel

@@ -8,7 +8,7 @@
 
         <variable
             name="network"
-            type="com.stonetree.imagebucket.core.NetworkState" />
+            type="com.stonetree.imagebucket.core.network.NetworkState" />
 
         <variable
             name="vm"

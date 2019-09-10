@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.core
+package com.stonetree.imagebucket.core.viewholder
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

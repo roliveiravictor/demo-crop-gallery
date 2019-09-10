@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
-import com.stonetree.imagebucket.core.CloudFunctions.GET_IMAGES
-import com.stonetree.imagebucket.core.Constants.FIREBASE_IMAGES_PATH
-import com.stonetree.imagebucket.core.NetworkState
-import com.stonetree.imagebucket.core.downloadReference
-import com.stonetree.imagebucket.core.uploadReference
+import com.stonetree.imagebucket.core.constants.CloudFunctions.GET_IMAGES
+import com.stonetree.imagebucket.core.constants.Constants.FIREBASE_IMAGES_PATH
+import com.stonetree.imagebucket.core.extensions.downloadReference
+import com.stonetree.imagebucket.core.extensions.uploadReference
+import com.stonetree.imagebucket.core.network.NetworkState
 import com.stonetree.imagebucket.main.model.MainModel
 import com.stonetree.imagebucket.main.model.Meta
 import kotlinx.coroutines.CoroutineScope
