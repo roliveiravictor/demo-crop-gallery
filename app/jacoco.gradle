@@ -36,4 +36,14 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
     ]))
 
     getExecutionData().setFrom(files("$buildDir/jacoco/testDebugUnitTest.exec"))
+
+    doLast {
+        println '*******************************************************************************' +
+                '*******************************************************************************'
+
+        println "Jacoco report can be found at: file:///$buildDir/reports/jacocoTestReport/html/index.html"
+
+        println '*******************************************************************************' +
+                '*******************************************************************************'
+    }
 }
