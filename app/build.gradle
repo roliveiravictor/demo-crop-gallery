@@ -70,20 +70,11 @@ dependencies {
 
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
-    testImplementation "androidx.test:core:$test_core_version"
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.koin:koin-test:$koin_test_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_version"
 
-    androidTestImplementation("androidx.arch.core:core-testing:$coretesting_version") {
-        exclude group: 'org.mockito'
-    }
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$esperocore_version"
+    androidTestImplementation "androidx.test:core:$test_core_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$esperocore_version"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$esperocore_version"
 }
 
 apply from: rootProject.file('sca-config/static-analysis.gradle')
