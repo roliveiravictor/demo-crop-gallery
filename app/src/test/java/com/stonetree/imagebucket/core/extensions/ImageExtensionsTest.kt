@@ -1,11 +1,10 @@
-package com.stonetree.imagebucket
+package com.stonetree.imagebucket.core.extensions
 
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import com.stonetree.imagebucket.core.constants.Constants.INTENT_EXTRA_DATA
-import com.stonetree.imagebucket.core.extensions.getCachedImage
 import junit.framework.TestCase.assertNotNull
 import org.junit.Test
 import org.mockito.Mockito.mock
