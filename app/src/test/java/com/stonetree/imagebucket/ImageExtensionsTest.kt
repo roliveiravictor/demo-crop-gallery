@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import com.stonetree.imagebucket.core.constants.Constants
 import com.stonetree.imagebucket.core.constants.Constants.INTENT_EXTRA_DATA
 import com.stonetree.imagebucket.core.extensions.getCachedImage
 import junit.framework.TestCase.assertNotNull
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 
 class ImageExtensionsTest {
 
