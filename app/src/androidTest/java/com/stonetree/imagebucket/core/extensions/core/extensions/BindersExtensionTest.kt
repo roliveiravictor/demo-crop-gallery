@@ -18,7 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class BinderExtensionTest {
+class BindersExtensionTest {
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 

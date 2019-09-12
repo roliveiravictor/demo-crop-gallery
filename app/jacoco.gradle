@@ -1,5 +1,7 @@
 apply plugin: 'jacoco'
 
+apply from: 'files.filter.gradle'
+
 jacoco {
     toolVersion = "0.8.4"
     reportsDir = file("$buildDir/reports")
@@ -14,20 +16,11 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
         html.enabled = true
     }
 
-    def excludes = [
-            '**/*$ViewInjector*.*',
-            '**/*$ViewBinder*.*',
-            '**/BuildConfig.*',
-            '**/Manifest*.*',
-            '**/*Injector*.*',
-            '**/R$*.class',
-            '**/*Test*.*',
-            '**/R.class',
-    ]
+    generateFilesFilter()
 
     getClassDirectories().setFrom(fileTree([
             dir: "$project.buildDir/tmp/kotlin-classes/debug",
-            excludes: excludes
+            excludes: blacklist
     ]))
 
     getSourceDirectories().setFrom(files([
