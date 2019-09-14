@@ -5,12 +5,15 @@ def patternsFilter = [
         '**/Manifest*.*',
         '**/*Injector*.*',
         '**/*Test*.*',
+        '**/*constants*/**',
+        '**/model/**',
+        '**/core/network/**',
 ]
 
 def filesFilter = [
         '**/R.class',
         '**/R$*.class',
-        '**/BindersExtensionKt.class'
+        '**/BindersExtensionKt.class',
 ]
 
 ext.blacklist = []
