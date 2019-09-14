@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stonetree.imagebucket.core.network.NetworkState
 import com.stonetree.imagebucket.main.model.MainModel
-import com.stonetree.imagebucket.main.resources.repository.MainRepository
+import com.stonetree.imagebucket.main.repository.MainRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: MainRepository) : ViewModel() {

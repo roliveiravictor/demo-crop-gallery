@@ -1,8 +1,8 @@
 package com.stonetree.imagebucket
 
 import android.app.Application
-import com.stonetree.imagebucket.main.resources.repository.MainRepository
-import com.stonetree.imagebucket.main.resources.repository.MainRepositoryImpl
+import com.stonetree.imagebucket.main.repository.MainRepository
+import com.stonetree.imagebucket.main.repository.MainRepositoryImpl
 import com.stonetree.imagebucket.main.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

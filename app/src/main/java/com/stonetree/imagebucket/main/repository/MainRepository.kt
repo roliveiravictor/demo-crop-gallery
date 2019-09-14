@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.main.resources.repository
+package com.stonetree.imagebucket.main.repository
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
