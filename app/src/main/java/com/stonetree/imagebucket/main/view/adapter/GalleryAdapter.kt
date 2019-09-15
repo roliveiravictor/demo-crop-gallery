@@ -8,7 +8,7 @@ import com.stonetree.imagebucket.R
 import com.stonetree.imagebucket.main.model.MainModel
 import com.stonetree.imagebucket.main.view.IPicture
 
-class MainAdapter(private val picture: IPicture) :
+class GalleryAdapter(private val picture: IPicture) :
     ListAdapter<MainModel, MainViewHolder>(MainDiffCallback()) {
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
