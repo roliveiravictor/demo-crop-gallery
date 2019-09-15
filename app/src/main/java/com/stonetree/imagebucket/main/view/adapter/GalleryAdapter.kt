@@ -9,7 +9,7 @@ import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.view.IPicture
 
 class GalleryAdapter(private val picture: IPicture) :
-    ListAdapter<GalleryModel, GalleryViewHolder>(MainDiffCallback()) {
+    ListAdapter<GalleryModel, GalleryViewHolder>(GalleryDiffCallback()) {
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         getItem(position).let { model ->
