@@ -4,15 +4,15 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.stonetree.imagebucket.core.viewholder.BaseViewHolder
 import com.stonetree.imagebucket.databinding.ListItemMainBinding
-import com.stonetree.imagebucket.main.model.MainModel
+import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.view.IPicture
 
 class MainViewHolder(
     private val bind: ListItemMainBinding,
     private val picture: IPicture
-) : BaseViewHolder<MainModel>(bind) {
+) : BaseViewHolder<GalleryModel>(bind) {
 
-    override fun onBind(model: MainModel) {
+    override fun onBind(model: GalleryModel) {
         bind.listener = View.OnLongClickListener {
             picture.delete(model.imageName)
             true

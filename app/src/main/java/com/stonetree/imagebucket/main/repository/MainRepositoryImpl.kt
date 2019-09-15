@@ -11,7 +11,7 @@ import com.stonetree.imagebucket.core.constants.Constants.FIREBASE_IMAGES_PATH
 import com.stonetree.imagebucket.core.extensions.downloadReference
 import com.stonetree.imagebucket.core.extensions.uploadReference
 import com.stonetree.imagebucket.core.network.NetworkState
-import com.stonetree.imagebucket.main.model.MainModel
+import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.model.Meta
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,11 +25,11 @@ class MainRepositoryImpl : MainRepository {
     private val storageReference = storage.reference
     private val functions = FirebaseFunctions.getInstance()
 
-    private val images = MutableLiveData<List<MainModel>>()
+    private val images = MutableLiveData<List<GalleryModel>>()
 
     private val network = MutableLiveData<NetworkState>()
 
-    override fun getImages(): MutableLiveData<List<MainModel>> {
+    override fun getImages(): MutableLiveData<List<GalleryModel>> {
         return images
     }
 
@@ -49,7 +49,7 @@ class MainRepositoryImpl : MainRepository {
                 uploadedImage.storage.downloadUrl.addOnCompleteListener { urlDownload ->
                     urlDownload.result?.let { uri ->
                         val newImages =
-                            mutableListOf(MainModel(uri, uri.toString().uploadReference()))
+                            mutableListOf(GalleryModel(uri, uri.toString().uploadReference()))
                         images.value?.let { oldImages ->
                             newImages.addAll(oldImages)
                         }
@@ -68,10 +68,10 @@ class MainRepositoryImpl : MainRepository {
             network.postValue(NetworkState.LOADING)
             cloudFunction.call().addOnSuccessListener { response ->
                 val response = Gson().fromJson(response.data.toString(), Meta::class.java)
-                val models = arrayListOf<MainModel>()
+                val models = arrayListOf<GalleryModel>()
                 response.urls.forEach { reference ->
                     reference.mediaLink.apply {
-                        models.add(MainModel(Uri.parse(this), this.downloadReference()))
+                        models.add(GalleryModel(Uri.parse(this), this.downloadReference()))
                     }
                 }
                 images.postValue(models)

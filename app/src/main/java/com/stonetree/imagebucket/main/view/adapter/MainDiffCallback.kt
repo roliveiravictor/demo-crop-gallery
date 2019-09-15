@@ -1,20 +1,20 @@
 package com.stonetree.imagebucket.main.view.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.stonetree.imagebucket.main.model.MainModel
+import com.stonetree.imagebucket.main.model.GalleryModel
 
-class MainDiffCallback : DiffUtil.ItemCallback<MainModel>() {
+class MainDiffCallback : DiffUtil.ItemCallback<GalleryModel>() {
 
     override fun areItemsTheSame(
-        oldItem: MainModel,
-        newItem: MainModel
+        oldItem: GalleryModel,
+        newItem: GalleryModel
     ): Boolean {
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(
-        oldItem: MainModel,
-        newItem: MainModel
+        oldItem: GalleryModel,
+        newItem: GalleryModel
     ): Boolean {
         return oldItem.imageUrl == newItem.imageUrl
     }
