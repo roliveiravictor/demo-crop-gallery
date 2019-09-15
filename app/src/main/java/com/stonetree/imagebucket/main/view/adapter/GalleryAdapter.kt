@@ -9,9 +9,9 @@ import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.view.IPicture
 
 class GalleryAdapter(private val picture: IPicture) :
-    ListAdapter<GalleryModel, MainViewHolder>(MainDiffCallback()) {
+    ListAdapter<GalleryModel, GalleryViewHolder>(MainDiffCallback()) {
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         getItem(position).let { model ->
             with(holder) {
                 itemView.tag = position
@@ -20,8 +20,8 @@ class GalleryAdapter(private val picture: IPicture) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
+        return GalleryViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.list_item_main, parent, false

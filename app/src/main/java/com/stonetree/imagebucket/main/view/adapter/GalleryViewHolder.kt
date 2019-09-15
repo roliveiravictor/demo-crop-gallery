@@ -7,7 +7,7 @@ import com.stonetree.imagebucket.databinding.ListItemMainBinding
 import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.view.IPicture
 
-class MainViewHolder(
+class GalleryViewHolder(
     private val bind: ListItemMainBinding,
     private val picture: IPicture
 ) : BaseViewHolder<GalleryModel>(bind) {
