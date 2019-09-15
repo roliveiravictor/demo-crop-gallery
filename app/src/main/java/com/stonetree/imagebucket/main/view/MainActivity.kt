@@ -29,6 +29,7 @@ import manifest.stonetree.com.br.permissions.feature.model.Device
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
+
     private val vm: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
