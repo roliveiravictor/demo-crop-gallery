@@ -15,15 +15,15 @@ class GalleryViewModel(private val repository: GalleryRepository) : ViewModel() 
 
     val network: LiveData<NetworkState> = repository.getState()
 
-    fun delete(name: String) {
-        repository.delete(name)
-    }
-
     init {
         repository.getAllImages()
     }
 
     fun uploadImage(uri: Uri) {
         repository.uploadImage(uri)
+    }
+
+    fun delete(name: String) {
+        repository.delete(name)
     }
 }

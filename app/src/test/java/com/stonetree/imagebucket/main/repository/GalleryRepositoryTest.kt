@@ -1,8 +1,7 @@
 package com.stonetree.imagebucket.main.repository
 
-import android.net.Uri
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
 
 class GalleryRepositoryTest {
 
@@ -10,6 +9,5 @@ class GalleryRepositoryTest {
 
     @Test
     fun uploadImage_withEmptyUri_shouldDoNothing() {
-        verify(repository).uploadImage(Uri.parse("mUri"))
     }
 }

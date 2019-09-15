@@ -1,6 +1,7 @@
 package com.stonetree.imagebucket.core.extensions
 
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotSame
 import org.junit.Test
 import java.lang.StringBuilder
 
@@ -29,6 +30,20 @@ class ReferenceExtensionTest {
             "images/flower-progressive.jpg",
             createUrl(domain, path).uploadReference()
         )
+    }
+
+    @Test
+    fun test_referenceHash_shouldReturnDifferent() {
+        val id = "mRef"
+        assertNotSame(id, id.referenceHash())
+    }
+
+    @Test
+    fun test_referenceHash_shouldReturnUniqueId() {
+        val id = "mRef"
+        val hashOne = id.referenceHash()
+        val hashTwo = id.referenceHash()
+        assertNotSame(hashOne, hashTwo)
     }
 
     private fun createUrl(domain: String, path: String): String {
