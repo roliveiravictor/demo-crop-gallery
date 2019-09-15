@@ -16,7 +16,7 @@ import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
 import com.stonetree.imagebucket.core.extensions.getCachedImage
 import com.stonetree.imagebucket.databinding.ActivityGalleryBinding
 import com.stonetree.imagebucket.main.view.adapter.GalleryAdapter
-import com.stonetree.imagebucket.main.viewmodel.MainViewModel
+import com.stonetree.imagebucket.main.viewmodel.GalleryViewModel
 import com.theartofdev.edmodo.cropper.CropImage.activity
 import com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
 import com.theartofdev.edmodo.cropper.CropImage.getActivityResult
@@ -30,7 +30,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
 
-    private val vm: MainViewModel by viewModel()
+    private val vm: GalleryViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

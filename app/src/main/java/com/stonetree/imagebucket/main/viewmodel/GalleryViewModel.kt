@@ -9,7 +9,7 @@ import com.stonetree.imagebucket.main.model.GalleryModel
 import com.stonetree.imagebucket.main.repository.GalleryRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: GalleryRepository) : ViewModel() {
+class GalleryViewModel(private val repository: GalleryRepository) : ViewModel() {
 
     val images: LiveData<List<GalleryModel>> = repository.getImages()
 
