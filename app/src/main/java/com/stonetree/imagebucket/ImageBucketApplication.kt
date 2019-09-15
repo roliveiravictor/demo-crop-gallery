@@ -8,7 +8,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 
-class MainApplication : Application() {
+class ImageBucketApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -17,7 +17,7 @@ class MainApplication : Application() {
 
         startKoin {
             androidLogger()
-            androidContext(this@MainApplication)
+            androidContext(this@ImageBucketApplication)
             Injector().apply {
                 loadKoinModules(generateAppModules())
             }
