@@ -11,9 +11,9 @@ interface GalleryRepository {
 
     fun getImages(): MutableLiveData<List<GalleryModel>>
 
-    suspend fun uploadImage(uri: Uri)
+    fun uploadImage(uri: Uri)
 
-    suspend fun getAllImages()
+    fun getAllImages()
 
     fun delete(id: String)
 }

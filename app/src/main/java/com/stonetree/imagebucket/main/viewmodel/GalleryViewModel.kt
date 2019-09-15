@@ -20,14 +20,10 @@ class GalleryViewModel(private val repository: GalleryRepository) : ViewModel() 
     }
 
     init {
-        viewModelScope.launch {
-            repository.getAllImages()
-        }
+        repository.getAllImages()
     }
 
     fun uploadImage(uri: Uri) {
-        viewModelScope.launch {
-            repository.uploadImage(uri)
-        }
+        repository.uploadImage(uri)
     }
 }

@@ -37,61 +37,55 @@ class GalleryRepositoryImpl : GalleryRepository {
         return network
     }
 
-    override suspend fun uploadImage(uri: Uri) {
-        withContext(Dispatchers.IO) {
-            val firebasePath =
-                this@GalleryRepositoryImpl.storageReference.child(
-                    FIREBASE_IMAGES_PATH + UUID.randomUUID().toString()
-                )
+    override fun uploadImage(uri: Uri) {
+        val firebasePath =
+            this@GalleryRepositoryImpl.storageReference.child(
+                FIREBASE_IMAGES_PATH + UUID.randomUUID().toString()
+            )
 
-            network.postValue(NetworkState.LOADING)
-            firebasePath.putFile(uri).addOnSuccessListener { uploadedImage ->
-                uploadedImage.storage.downloadUrl.addOnCompleteListener { urlDownload ->
-                    urlDownload.result?.let { uri ->
-                        val newImages =
-                            mutableListOf(GalleryModel(uri, uri.toString().uploadReference()))
-                        images.value?.let { oldImages ->
-                            newImages.addAll(oldImages)
-                        }
-                        images.postValue(newImages)
-                        network.postValue(NetworkState.LOADED)
+        network.postValue(NetworkState.LOADING)
+        firebasePath.putFile(uri).addOnSuccessListener { uploadedImage ->
+            uploadedImage.storage.downloadUrl.addOnCompleteListener { urlDownload ->
+                urlDownload.result?.let { uri ->
+                    val newImages =
+                        mutableListOf(GalleryModel(uri, uri.toString().uploadReference()))
+                    images.value?.let { oldImages ->
+                        newImages.addAll(oldImages)
                     }
+                    images.postValue(newImages)
+                    network.postValue(NetworkState.LOADED)
                 }
             }
         }
     }
 
-    override suspend fun getAllImages() {
-        withContext(Dispatchers.IO) {
-            val cloudFunction = functions.getHttpsCallable(GET_IMAGES)
+    override fun getAllImages() {
+        val cloudFunction = functions.getHttpsCallable(GET_IMAGES)
 
-            network.postValue(NetworkState.LOADING)
-            cloudFunction.call().addOnSuccessListener { response ->
-                val response = Gson().fromJson(response.data.toString(), Meta::class.java)
-                val models = arrayListOf<GalleryModel>()
-                response.urls.forEach { reference ->
-                    reference.mediaLink.apply {
-                        models.add(GalleryModel(Uri.parse(this), this.downloadReference()))
-                    }
+        network.postValue(NetworkState.LOADING)
+        cloudFunction.call().addOnSuccessListener { response ->
+            val response = Gson().fromJson(response.data.toString(), Meta::class.java)
+            val models = arrayListOf<GalleryModel>()
+            response.urls.forEach { reference ->
+                reference.mediaLink.apply {
+                    models.add(GalleryModel(Uri.parse(this), this.downloadReference()))
                 }
-                images.postValue(models)
-                network.postValue(NetworkState.LOADED)
-            }.addOnFailureListener { error ->
-                Log.w(javaClass.name, error.message)
             }
+            images.postValue(models)
+            network.postValue(NetworkState.LOADED)
+        }.addOnFailureListener { error ->
+            Log.w(javaClass.name, error.message)
         }
     }
 
     override fun delete(name: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            network.postValue(NetworkState.LOADING)
-            storageReference.child(name).delete().addOnSuccessListener {
-                CoroutineScope(Dispatchers.IO).launch {
-                    getAllImages()
-                }
-            }.addOnFailureListener { error ->
-                Log.w(javaClass.name, error.message)
+        network.postValue(NetworkState.LOADING)
+        storageReference.child(name).delete().addOnSuccessListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                getAllImages()
             }
+        }.addOnFailureListener { error ->
+            Log.w(javaClass.name, error.message)
         }
     }
 }
