@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.stonetree.imagebucket.core.network.NetworkState
 import com.stonetree.imagebucket.main.model.GalleryModel
 
-interface MainRepository {
+interface GalleryRepository {
 
     fun getState(): MutableLiveData<NetworkState>
 

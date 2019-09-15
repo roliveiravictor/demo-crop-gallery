@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class MainRepositoryImpl : MainRepository {
+class GalleryRepositoryImpl : GalleryRepository {
     private val storage = FirebaseStorage.getInstance()
 
     private val storageReference = storage.reference
@@ -40,7 +40,7 @@ class MainRepositoryImpl : MainRepository {
     override suspend fun uploadImage(uri: Uri) {
         withContext(Dispatchers.IO) {
             val firebasePath =
-                this@MainRepositoryImpl.storageReference.child(
+                this@GalleryRepositoryImpl.storageReference.child(
                     FIREBASE_IMAGES_PATH + UUID.randomUUID().toString()
                 )
 

@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stonetree.imagebucket.core.network.NetworkState
 import com.stonetree.imagebucket.main.model.GalleryModel
-import com.stonetree.imagebucket.main.repository.MainRepository
+import com.stonetree.imagebucket.main.repository.GalleryRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: MainRepository) : ViewModel() {
+class MainViewModel(private val repository: GalleryRepository) : ViewModel() {
 
     val images: LiveData<List<GalleryModel>> = repository.getImages()
 
