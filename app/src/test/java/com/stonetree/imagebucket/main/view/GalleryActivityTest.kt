@@ -8,11 +8,11 @@ import junit.framework.TestCase.assertEquals
 import org.koin.test.AutoCloseKoinTest
 
 @RunWith(RobolectricTestRunner::class)
-class MainActivityTest : AutoCloseKoinTest() {
+class GalleryActivityTest : AutoCloseKoinTest() {
 
     @Test
     fun test() {
-        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+        ActivityScenario.launch(GalleryActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
                 assertEquals("com.stonetree.imagebucket", activity.packageName)
             }

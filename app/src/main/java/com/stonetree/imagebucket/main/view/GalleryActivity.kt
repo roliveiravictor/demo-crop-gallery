@@ -28,7 +28,7 @@ import manifest.stonetree.com.br.permissions.feature.Manifest
 import manifest.stonetree.com.br.permissions.feature.model.Device
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
+class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
 
     private val vm: MainViewModel by viewModel()
 
@@ -48,11 +48,11 @@ class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
         data: ActivityMainBinding,
         adapter: MainAdapter
     ) {
-        vm.images.observe(this@MainActivity) { images ->
+        vm.images.observe(this@GalleryActivity) { images ->
             adapter.submitList(images)
         }
 
-        vm.network.observe(this@MainActivity) { state ->
+        vm.network.observe(this@GalleryActivity) { state ->
             data.network = state
         }
     }
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
         data: ActivityMainBinding,
         adapter: MainAdapter
     ) {
-        data.view = this@MainActivity
+        data.view = this@GalleryActivity
         data.gallery.adapter = adapter
     }
 
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), IManifestCallback, IPicture {
 
     private fun callGalleryEditor(intent: Intent) {
         intent?.data?.let { uri ->
-            activity(uri).start(this@MainActivity)
+            activity(uri).start(this@GalleryActivity)
         }
     }
 
