@@ -5,7 +5,6 @@
     tools:context=".main.view.GalleryActivity">
 
     <data>
-
         <variable
             name="network"
             type="com.stonetree.imagebucket.core.network.NetworkState" />

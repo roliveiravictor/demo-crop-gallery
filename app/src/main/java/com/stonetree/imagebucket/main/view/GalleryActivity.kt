@@ -14,7 +14,7 @@ import com.stonetree.imagebucket.R
 import com.stonetree.imagebucket.core.constants.Constants.IMAGE_MYME_TYPE
 import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
 import com.stonetree.imagebucket.core.extensions.getCachedImage
-import com.stonetree.imagebucket.databinding.ActivityMainBinding
+import com.stonetree.imagebucket.databinding.ActivityGalleryBinding
 import com.stonetree.imagebucket.main.view.adapter.MainAdapter
 import com.stonetree.imagebucket.main.viewmodel.MainViewModel
 import com.theartofdev.edmodo.cropper.CropImage.activity
@@ -35,8 +35,8 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val data: ActivityMainBinding = DataBindingUtil.setContentView(
-            this, R.layout.activity_main
+        val data: ActivityGalleryBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_gallery
         )
         val adapter = MainAdapter(this)
 
@@ -45,7 +45,7 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
     }
 
     private fun bindObservers(
-        data: ActivityMainBinding,
+        data: ActivityGalleryBinding,
         adapter: MainAdapter
     ) {
         vm.images.observe(this@GalleryActivity) { images ->
@@ -58,7 +58,7 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
     }
 
     private fun bindXml(
-        data: ActivityMainBinding,
+        data: ActivityGalleryBinding,
         adapter: MainAdapter
     ) {
         data.view = this@GalleryActivity
