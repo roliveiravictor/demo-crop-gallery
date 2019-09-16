@@ -12,9 +12,9 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MainApplication">
+        android:name=".ImageBucketApplication">
 
-        <activity android:name=".main.view.MainActivity">
+        <activity android:name=".main.view.GalleryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

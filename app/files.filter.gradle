@@ -1,0 +1,24 @@
+def patternsFilter = [
+        '**/*$ViewInjector*.*',
+        '**/*$ViewBinder*.*',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Injector*.*',
+        '**/*Test*.*',
+        '**/*constants*/**',
+        '**/model/**',
+        '**/core/network/**',
+]
+
+def filesFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BindersExtensionKt.class',
+]
+
+ext.blacklist = []
+
+ext.generateFilesFilter = {
+    filesFilter.each { file -> blacklist << file.toString() }
+    patternsFilter.each { pattern -> blacklist << pattern.toString() }
+}

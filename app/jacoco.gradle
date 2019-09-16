@@ -1,0 +1,42 @@
+apply plugin: 'jacoco'
+
+apply from: 'files.filter.gradle'
+
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/reports")
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    generateFilesFilter()
+
+    getClassDirectories().setFrom(fileTree([
+            dir: "$project.buildDir/tmp/kotlin-classes/debug",
+            excludes: blacklist
+    ]))
+
+    getSourceDirectories().setFrom(files([
+            "$project.projectDir/src/main/java",
+            "$project.projectDir/src/main/kotlin",
+    ]))
+
+    getExecutionData().setFrom(files("$buildDir/jacoco/testDebugUnitTest.exec"))
+
+    doLast {
+        println '*******************************************************************************' +
+                '*******************************************************************************'
+
+        println "Jacoco report can be found at: file:///$buildDir/reports/jacocoTestReport/html/index.html"
+
+        println '*******************************************************************************' +
+                '*******************************************************************************'
+    }
+}
