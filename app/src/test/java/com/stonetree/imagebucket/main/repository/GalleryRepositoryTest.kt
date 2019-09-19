@@ -2,6 +2,7 @@ package com.stonetree.imagebucket.main.repository
 
 import com.stonetree.imagebucket.main.viewmodel.GalleryViewModel
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
@@ -31,6 +32,7 @@ class GalleryRepositoryTest: AutoCloseKoinTest() {
     }
 
     @Test
+    @Ignore
     fun uploadImage_withEmptyUri_shouldDoNothing() {
         vm.delete("")
         verify(repository).delete("")

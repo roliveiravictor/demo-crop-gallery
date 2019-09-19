@@ -44,6 +44,34 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
         bindObservers(data, adapter)
     }
 
+    override fun onActivityResult(request: Int, result: Int, intent: Intent?) {
+        super.onActivityResult(request, result, intent)
+        intent?.apply {
+            when (request) {
+                CAMERA.value -> executeCamera(this)
+                READ_EXTERNAL_STORAGE.value -> executeGallery(this)
+                CROP_IMAGE_ACTIVITY_REQUEST_CODE -> vm.uploadImage(getActivityResult(this).uri)
+            }
+        }
+    }
+
+    override fun onPermissionGranted(requestCode: Int) {
+        if (requestCode == REQUEST_CODE)
+            openCamera()
+    }
+
+    override fun onPermissionDenied() {
+        Toast.makeText(
+            this,
+            getString(R.string.permission_denied),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    override fun delete(name: String) {
+        vm.delete(name)
+    }
+
     private fun bindObservers(
         data: ActivityGalleryBinding,
         adapter: GalleryAdapter
@@ -65,30 +93,19 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
         data.gallery.adapter = adapter
     }
 
-    override fun onActivityResult(request: Int, result: Int, intent: Intent?) {
-        super.onActivityResult(request, result, intent)
-        intent?.apply {
-            when (request) {
-                CAMERA.value -> callCameraEditor(this)
-                READ_EXTERNAL_STORAGE.value -> callGalleryEditor(this)
-                CROP_IMAGE_ACTIVITY_REQUEST_CODE -> vm.uploadImage(getActivityResult(this).uri)
-            }
-        }
-    }
-
-    private fun callCameraEditor(intent: Intent) {
+    private fun executeCamera(intent: Intent) {
         val image = intent.getCachedImage(this)
         val uri = Uri.fromFile(image)
         activity(uri).start(this)
     }
 
-    private fun callGalleryEditor(intent: Intent) {
+    private fun executeGallery(intent: Intent) {
         intent?.data?.let { uri ->
-            activity(uri).start(this@GalleryActivity)
+            activity(uri).start(this)
         }
     }
 
-    fun requestCamera(view: View) {
+    fun askPermissions(view: View) {
         val permissions = arrayOf(
             CAMERA.key,
             READ_EXTERNAL_STORAGE.key,
@@ -104,7 +121,7 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
         Manifest.request(device, this)
     }
 
-    fun requestGallery(view: View) {
+    fun openGallery(view: View) {
         val galleryIntent = Intent(Intent.ACTION_PICK, EXTERNAL_CONTENT_URI)
         galleryIntent.type = IMAGE_MYME_TYPE
         startActivityForResult(galleryIntent, READ_EXTERNAL_STORAGE.value)
@@ -113,22 +130,5 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
     private fun openCamera() {
         val cameraIntent = Intent(ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, CAMERA.value)
-    }
-
-    override fun onPermissionGranted(requestCode: Int) {
-        if (requestCode == REQUEST_CODE)
-            openCamera()
-    }
-
-    override fun onPermissionDenied() {
-        Toast.makeText(
-            this,
-            getString(R.string.permission_denied),
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    override fun delete(name: String) {
-        vm.delete(name)
     }
 }
