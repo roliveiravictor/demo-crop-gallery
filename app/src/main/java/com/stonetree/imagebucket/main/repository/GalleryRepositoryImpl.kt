@@ -94,8 +94,10 @@ class GalleryRepositoryImpl : GalleryRepository {
 
 
     override fun delete(name: String) {
-        storageReference.child(name)
-            .delete()
-            .addOnSuccessListener { getAllImages() }
+        if(name.isNotBlank()) {
+            storageReference.child(name)
+                .delete()
+                .addOnSuccessListener { getAllImages() }
+        }
     }
 }

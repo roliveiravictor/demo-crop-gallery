@@ -5,6 +5,7 @@
     tools:context=".main.view.GalleryActivity">
 
     <data>
+
         <variable
             name="network"
             type="com.stonetree.imagebucket.core.network.NetworkState" />
@@ -56,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sixteen_dp"
             android:backgroundTint="@color/colorPrimary"
-            android:onClick="openGallery"
+            android:onClick="@{() -> view.openGallery()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_upload"
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sixteen_dp"
             android:backgroundTint="@color/colorPrimary"
-            android:onClick="askPermissions"
+            android:onClick="@{() -> view.askPermission()}"
             app:layout_constraintBottom_toTopOf="@+id/upload"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_camera"

@@ -100,16 +100,14 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
     }
 
     private fun executeGallery(intent: Intent) {
-        intent?.data?.let { uri ->
+        intent.data?.let { uri ->
             activity(uri).start(this)
         }
     }
 
-    fun askPermissions(view: View) {
+    fun askPermission() {
         val permissions = arrayOf(
-            CAMERA.key,
-            READ_EXTERNAL_STORAGE.key,
-            WRITE_EXTERNAL_STORAGE.key
+            CAMERA.key
         )
 
         val device = Device.Builder()
@@ -121,7 +119,7 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
         Manifest.request(device, this)
     }
 
-    fun openGallery(view: View) {
+    fun openGallery() {
         val galleryIntent = Intent(Intent.ACTION_PICK, EXTERNAL_CONTENT_URI)
         galleryIntent.type = IMAGE_MYME_TYPE
         startActivityForResult(galleryIntent, READ_EXTERNAL_STORAGE.value)
