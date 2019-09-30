@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:name=".ImageBucketApplication">
 
-        <activity android:name=".main.view.GalleryActivity">
+        <activity android:name=".gallery.view.GalleryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,8 +1,8 @@
 package com.stonetree.imagebucket.core.injector
 
-import com.stonetree.imagebucket.main.repository.GalleryRepository
-import com.stonetree.imagebucket.main.repository.GalleryRepositoryImpl
-import com.stonetree.imagebucket.main.viewmodel.GalleryViewModel
+import com.stonetree.imagebucket.gallery.repository.GalleryRepository
+import com.stonetree.imagebucket.gallery.repository.GalleryRepositoryImpl
+import com.stonetree.imagebucket.gallery.viewmodel.GalleryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module

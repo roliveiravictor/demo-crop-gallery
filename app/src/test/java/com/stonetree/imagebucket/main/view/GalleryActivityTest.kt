@@ -15,6 +15,7 @@ import androidx.test.core.app.ActivityScenario
 import com.stonetree.imagebucket.core.constants.Constants
 import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
 import com.stonetree.imagebucket.core.extensions.getCachedImage
+import com.stonetree.imagebucket.gallery.view.GalleryActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_EXTRA_RESULT
 import junit.framework.TestCase.assertTrue

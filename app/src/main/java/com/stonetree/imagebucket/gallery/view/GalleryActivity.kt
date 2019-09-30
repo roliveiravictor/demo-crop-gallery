@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.main.view
+package com.stonetree.imagebucket.gallery.view
 
 import android.content.Intent
 import android.net.Uri
@@ -15,8 +15,8 @@ import com.stonetree.imagebucket.core.constants.Constants.IMAGE_MYME_TYPE
 import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
 import com.stonetree.imagebucket.core.extensions.getCachedImage
 import com.stonetree.imagebucket.databinding.ActivityGalleryBinding
-import com.stonetree.imagebucket.main.view.adapter.GalleryAdapter
-import com.stonetree.imagebucket.main.viewmodel.GalleryViewModel
+import com.stonetree.imagebucket.gallery.view.adapter.GalleryAdapter
+import com.stonetree.imagebucket.gallery.viewmodel.GalleryViewModel
 import com.theartofdev.edmodo.cropper.CropImage.activity
 import com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
 import com.theartofdev.edmodo.cropper.CropImage.getActivityResult
@@ -28,7 +28,8 @@ import manifest.stonetree.com.br.permissions.feature.Manifest
 import manifest.stonetree.com.br.permissions.feature.model.Device
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class GalleryActivity : AppCompatActivity(), IManifestCallback, IPicture {
+class GalleryActivity : AppCompatActivity(), IManifestCallback,
+    IPicture {
 
     private val vm: GalleryViewModel by viewModel()
 

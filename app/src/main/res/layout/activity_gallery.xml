@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.view.GalleryActivity">
+    tools:context=".gallery.view.GalleryActivity">
 
     <data>
 
@@ -12,11 +12,11 @@
 
         <variable
             name="vm"
-            type="com.stonetree.imagebucket.main.viewmodel.GalleryViewModel" />
+            type="com.stonetree.imagebucket.gallery.viewmodel.GalleryViewModel" />
 
         <variable
             name="view"
-            type="com.stonetree.imagebucket.main.view.GalleryActivity" />
+            type="com.stonetree.imagebucket.gallery.view.GalleryActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

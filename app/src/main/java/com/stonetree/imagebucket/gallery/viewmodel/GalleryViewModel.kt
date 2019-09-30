@@ -1,12 +1,12 @@
-package com.stonetree.imagebucket.main.viewmodel
+package com.stonetree.imagebucket.gallery.viewmodel
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stonetree.imagebucket.core.network.NetworkState
-import com.stonetree.imagebucket.main.model.GalleryModel
-import com.stonetree.imagebucket.main.repository.GalleryRepository
+import com.stonetree.imagebucket.gallery.model.GalleryModel
+import com.stonetree.imagebucket.gallery.repository.GalleryRepository
 import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: GalleryRepository) : ViewModel() {

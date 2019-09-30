@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.main.repository
+package com.stonetree.imagebucket.gallery.repository
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
@@ -13,8 +13,8 @@ import com.stonetree.imagebucket.core.extensions.downloadReference
 import com.stonetree.imagebucket.core.extensions.referenceHash
 import com.stonetree.imagebucket.core.extensions.uploadReference
 import com.stonetree.imagebucket.core.network.NetworkState
-import com.stonetree.imagebucket.main.model.GalleryModel
-import com.stonetree.imagebucket.main.model.Meta
+import com.stonetree.imagebucket.gallery.model.GalleryModel
+import com.stonetree.imagebucket.gallery.model.Meta
 
 class GalleryRepositoryImpl : GalleryRepository {
     private val storage = FirebaseStorage.getInstance()
@@ -86,7 +86,12 @@ class GalleryRepositoryImpl : GalleryRepository {
         val models = arrayListOf<GalleryModel>()
         response.urls.forEach { reference ->
             reference.mediaLink.apply {
-                models.add(GalleryModel(Uri.parse(this), this.downloadReference()))
+                models.add(
+                    GalleryModel(
+                        Uri.parse(this),
+                        this.downloadReference()
+                    )
+                )
             }
         }
         return models

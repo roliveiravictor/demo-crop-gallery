@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.main.model
+package com.stonetree.imagebucket.gallery.model
 
 import android.net.Uri
 

@@ -1,11 +1,11 @@
-package com.stonetree.imagebucket.main.view.adapter
+package com.stonetree.imagebucket.gallery.view.adapter
 
 import android.view.View
 import com.bumptech.glide.Glide
 import com.stonetree.imagebucket.core.viewholder.BaseViewHolder
 import com.stonetree.imagebucket.databinding.ListItemMainBinding
-import com.stonetree.imagebucket.main.model.GalleryModel
-import com.stonetree.imagebucket.main.view.IPicture
+import com.stonetree.imagebucket.gallery.model.GalleryModel
+import com.stonetree.imagebucket.gallery.view.IPicture
 
 class GalleryViewHolder(
     private val bind: ListItemMainBinding,

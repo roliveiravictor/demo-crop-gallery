@@ -1,7 +1,7 @@
-package com.stonetree.imagebucket.main.view.adapter
+package com.stonetree.imagebucket.gallery.view.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.stonetree.imagebucket.main.model.GalleryModel
+import com.stonetree.imagebucket.gallery.model.GalleryModel
 
 class GalleryDiffCallback : DiffUtil.ItemCallback<GalleryModel>() {
 

@@ -1,6 +1,7 @@
 package com.stonetree.imagebucket.main.repository
 
-import com.stonetree.imagebucket.main.viewmodel.GalleryViewModel
+import com.stonetree.imagebucket.gallery.repository.GalleryRepositoryImpl
+import com.stonetree.imagebucket.gallery.viewmodel.GalleryViewModel
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
@@ -13,28 +14,18 @@ import org.koin.test.inject
 import org.koin.test.mock.declareMock
 import org.mockito.Mockito.verify
 
-class GalleryRepositoryTest: AutoCloseKoinTest() {
+class GalleryRepositoryTest : AutoCloseKoinTest() {
 
-    private val module = module {
-        named("repository").apply {
-            single<GalleryRepository>(this) { GalleryRepositoryImpl() }
-            single { GalleryViewModel(get(this.javaClass)) }
-        }
-    }
-
-    private val repository: GalleryRepositoryImpl by inject()
-    private val vm: GalleryViewModel by inject()
+    private lateinit var repository: GalleryRepositoryImpl
 
     @Before
     fun setup() {
-        startKoin { loadKoinModules(module) }
-        declareMock<GalleryRepositoryImpl>()
+        repository = GalleryRepositoryImpl()
     }
 
     @Test
     @Ignore
     fun uploadImage_withEmptyUri_shouldDoNothing() {
-        vm.delete("")
-        verify(repository).delete("")
+
     }
 }

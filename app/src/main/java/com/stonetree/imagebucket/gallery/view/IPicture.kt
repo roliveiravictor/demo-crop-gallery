@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.main.view
+package com.stonetree.imagebucket.gallery.view
 
 interface IPicture {
 
