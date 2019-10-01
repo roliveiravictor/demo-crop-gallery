@@ -10,7 +10,7 @@ import org.koin.dsl.module
 class Injector {
 
     private val main = module {
-        single<GalleryRepository> { GalleryRepositoryImpl() }
+        single<GalleryRepository> { GalleryRepositoryImpl(get(), get()) }
         viewModel { GalleryViewModel(get()) }
     }
 

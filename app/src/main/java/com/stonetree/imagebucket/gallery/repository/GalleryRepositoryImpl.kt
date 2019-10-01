@@ -16,11 +16,10 @@ import com.stonetree.imagebucket.core.network.NetworkState
 import com.stonetree.imagebucket.gallery.model.GalleryModel
 import com.stonetree.imagebucket.gallery.model.Meta
 
-class GalleryRepositoryImpl : GalleryRepository {
-    private val storage = FirebaseStorage.getInstance()
-    private val storageReference = storage.reference
-
-    private val functions = FirebaseFunctions.getInstance()
+class GalleryRepositoryImpl(
+    private val storage: FirebaseStorage,
+    private val functions: FirebaseFunctions
+) : GalleryRepository {
 
     private val images = MutableLiveData<List<GalleryModel>>()
 
@@ -36,20 +35,20 @@ class GalleryRepositoryImpl : GalleryRepository {
 
     override fun uploadImage(uri: Uri) {
         network.postValue(NetworkState.LOADING)
-        storageReference.child(
+        storage.reference.child(
             FIREBASE_IMAGES_PATH.referenceHash()
         ).putFile(uri).addOnSuccessListener { task ->
-            executeUpload(task)
+            requestDownloadUrl(task)
         }
     }
 
-    private fun executeUpload(task: UploadTask.TaskSnapshot) {
+    private fun requestDownloadUrl(task: UploadTask.TaskSnapshot) {
         task.storage.downloadUrl.addOnCompleteListener { reference ->
-            updateImageReferences(reference)
+            updateImagesReference(reference)
         }
     }
 
-    private fun updateImageReferences(reference: Task<Uri>) {
+    private fun updateImagesReference(reference: Task<Uri>) {
         reference.result?.let { uploadedImage ->
             val newImage = GalleryModel(
                 uploadedImage,
@@ -68,39 +67,40 @@ class GalleryRepositoryImpl : GalleryRepository {
 
     override fun getAllImages() {
         network.postValue(NetworkState.LOADING)
-
         functions.getHttpsCallable(GET_IMAGES)
             .call()
             .addOnSuccessListener { response ->
-                val response = Gson().fromJson(response.data.toString(), Meta::class.java)
-
-                parseImageReferences(response).let { stored ->
-                    images.postValue(stored)
+                Gson().fromJson(
+                    response.data.toString(),
+                    Meta::class.java
+                ).apply {
+                    parseImageReferences(this).let { stored ->
+                        images.postValue(stored)
+                    }
+                    network.postValue(NetworkState.LOADED)
                 }
-
-                network.postValue(NetworkState.LOADED)
             }
     }
 
     private fun parseImageReferences(response: Meta): List<GalleryModel> {
-        val models = arrayListOf<GalleryModel>()
-        response.urls.forEach { reference ->
-            reference.mediaLink.apply {
-                models.add(
-                    GalleryModel(
-                        Uri.parse(this),
-                        this.downloadReference()
+        return arrayListOf<GalleryModel>().also { models ->
+            response.urls.forEach { reference ->
+                reference.mediaLink.apply {
+                    models.add(
+                        GalleryModel(
+                            Uri.parse(this),
+                            downloadReference()
+                        )
                     )
-                )
+                }
             }
         }
-        return models
     }
 
 
-    override fun delete(name: String) {
-        if(name.isNotBlank()) {
-            storageReference.child(name)
+    override fun delete(id: String) {
+        if(id.isNotBlank()) {
+            storage.reference.child(id)
                 .delete()
                 .addOnSuccessListener { getAllImages() }
         }
