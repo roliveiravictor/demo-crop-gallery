@@ -11,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.stonetree.imagebucket.R
+import com.stonetree.imagebucket.core.constants.Constants
+import com.stonetree.imagebucket.core.constants.Constants.FIREBASE_IMAGES_PATH
 import com.stonetree.imagebucket.core.constants.Constants.IMAGE_MYME_TYPE
 import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
 import com.stonetree.imagebucket.core.extensions.getCachedImage
+import com.stonetree.imagebucket.core.extensions.referenceHash
 import com.stonetree.imagebucket.databinding.ActivityGalleryBinding
 import com.stonetree.imagebucket.gallery.view.adapter.GalleryAdapter
 import com.stonetree.imagebucket.gallery.viewmodel.GalleryViewModel
@@ -51,7 +54,10 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback,
             when (request) {
                 CAMERA.value -> executeCamera(this)
                 READ_EXTERNAL_STORAGE.value -> executeGallery(this)
-                CROP_IMAGE_ACTIVITY_REQUEST_CODE -> vm.uploadImage(getActivityResult(this).uri)
+                CROP_IMAGE_ACTIVITY_REQUEST_CODE -> vm.uploadImage(
+                    getActivityResult(this).uri,
+                    FIREBASE_IMAGES_PATH.referenceHash()
+                )
             }
         }
     }

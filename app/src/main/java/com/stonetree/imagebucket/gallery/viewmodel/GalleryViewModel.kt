@@ -19,8 +19,8 @@ class GalleryViewModel(private val repository: GalleryRepository) : ViewModel() 
         repository.getAllImages()
     }
 
-    fun uploadImage(uri: Uri) {
-        repository.uploadImage(uri)
+    fun uploadImage(uri: Uri, hash: String) {
+        repository.uploadImage(uri, hash)
     }
 
     fun delete(name: String) {

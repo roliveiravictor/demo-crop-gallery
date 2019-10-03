@@ -33,13 +33,12 @@ class GalleryRepositoryImpl(
         return network
     }
 
-    override fun uploadImage(uri: Uri) {
+    override fun uploadImage(uri: Uri, hash: String) {
         network.postValue(NetworkState.LOADING)
-        storage.reference.child(
-            FIREBASE_IMAGES_PATH.referenceHash()
-        ).putFile(uri).addOnSuccessListener { task ->
-            requestDownloadUrl(task)
-        }
+        storage.reference.child(hash)
+            .putFile(uri).addOnSuccessListener { task ->
+                requestDownloadUrl(task)
+            }
     }
 
     private fun requestDownloadUrl(task: UploadTask.TaskSnapshot) {
@@ -99,7 +98,7 @@ class GalleryRepositoryImpl(
 
 
     override fun delete(id: String) {
-        if(id.isNotBlank()) {
+        if (id.isNotBlank()) {
             storage.reference.child(id)
                 .delete()
                 .addOnSuccessListener { getAllImages() }

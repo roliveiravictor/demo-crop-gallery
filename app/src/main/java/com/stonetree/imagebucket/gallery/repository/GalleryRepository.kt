@@ -11,7 +11,7 @@ interface GalleryRepository {
 
     fun getImages(): MutableLiveData<List<GalleryModel>>
 
-    fun uploadImage(uri: Uri)
+    fun uploadImage(uri: Uri, hash: String)
 
     fun getAllImages()
 

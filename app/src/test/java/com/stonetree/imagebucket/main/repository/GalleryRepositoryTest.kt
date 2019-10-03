@@ -1,25 +1,31 @@
 package com.stonetree.imagebucket.main.repository
 
 import android.net.Uri
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import com.stonetree.imagebucket.core.constants.Constants
 import com.stonetree.imagebucket.core.constants.Constants.FIREBASE_IMAGES_PATH
-import com.stonetree.imagebucket.core.extensions.referenceHash
 import com.stonetree.imagebucket.core.network.NetworkState.Companion.LOADING
 import com.stonetree.imagebucket.gallery.repository.GalleryRepositoryImpl
-import com.stonetree.imagebucket.mocker.FirebaseRepositoryMockerImpl
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
-import org.mockito.ArgumentMatchers
+import org.junit.runner.RunWith
 import org.mockito.Mockito.*
+import org.robolectric.RobolectricTestRunner
 
-class GalleryRepositoryTest : FirebaseRepositoryMockerImpl() {
+@RunWith(RobolectricTestRunner::class)
+class GalleryRepositoryTest {
 
-    private val storage = mockFirebaseStorage()
+    /**
+     * Warning:
+     * https://static.javadoc.io/org.mockito/
+     * mockito-core/2.7.14/org/mockito/Mockito.html#RETURNS_DEEP_STUBS
+     */
 
-    private val functions = mockFirebaseFunctions()
+    private val storage = mock(FirebaseStorage::class.java, RETURNS_DEEP_STUBS)
+
+    private val functions = mock(FirebaseFunctions::class.java, RETURNS_DEEP_STUBS)
 
     private lateinit var repository: GalleryRepositoryImpl
 
@@ -29,14 +35,19 @@ class GalleryRepositoryTest : FirebaseRepositoryMockerImpl() {
     }
 
     @Test
-    @Ignore
     fun uploadImage_withEmptyUri_shouldDoNothing() {
-        FIREBASE_IMAGES_PATH.apply {
-            `when`(referenceHash()).thenReturn(this)
-            mockPutFile(storage, this)
-        }
+        val hash = FIREBASE_IMAGES_PATH
+        val uri = Uri.parse(hash)
 
-        repository.uploadImage(mock(Uri::class.java))
-        assertEquals(LOADING, repository.getState())
+        `when`(
+            storage.
+                reference
+                .child(hash)
+                .putFile(uri)
+        ).thenReturn(mock(UploadTask::class.java))
+
+        repository.uploadImage(uri, hash)
+
+        assertEquals(LOADING, repository.getState().value)
     }
 }
