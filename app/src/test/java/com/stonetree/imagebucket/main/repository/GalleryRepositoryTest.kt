@@ -11,6 +11,7 @@ import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.test.AutoCloseKoinTest
 import org.mockito.Mockito.*
 import org.robolectric.RobolectricTestRunner
 
