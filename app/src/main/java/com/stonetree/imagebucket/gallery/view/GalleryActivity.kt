@@ -5,13 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.stonetree.imagebucket.R
-import com.stonetree.imagebucket.core.constants.Constants
 import com.stonetree.imagebucket.core.constants.Constants.FIREBASE_IMAGES_PATH
 import com.stonetree.imagebucket.core.constants.Constants.IMAGE_MYME_TYPE
 import com.stonetree.imagebucket.core.constants.Constants.REQUEST_CODE
@@ -25,16 +23,20 @@ import com.theartofdev.edmodo.cropper.CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
 import com.theartofdev.edmodo.cropper.CropImage.getActivityResult
 import manifest.stonetree.com.br.permissions.constants.Permission.CAMERA
 import manifest.stonetree.com.br.permissions.constants.Permission.READ_EXTERNAL_STORAGE
-import manifest.stonetree.com.br.permissions.constants.Permission.WRITE_EXTERNAL_STORAGE
 import manifest.stonetree.com.br.permissions.feature.IManifestCallback
 import manifest.stonetree.com.br.permissions.feature.Manifest
 import manifest.stonetree.com.br.permissions.feature.model.Device
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-class GalleryActivity : AppCompatActivity(), IManifestCallback,
-    IPicture {
+class GalleryActivity : AppCompatActivity(),
+    IManifestCallback,
+    Picture {
 
     private val vm: GalleryViewModel by viewModel()
+
+    private val adapter: GalleryAdapter by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,6 @@ class GalleryActivity : AppCompatActivity(), IManifestCallback,
         val data: ActivityGalleryBinding = DataBindingUtil.setContentView(
             this, R.layout.activity_gallery
         )
-        val adapter = GalleryAdapter(this)
 
         bindXml(data, adapter)
         bindObservers(data, adapter)

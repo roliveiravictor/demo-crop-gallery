@@ -19,7 +19,7 @@ class ImageBucketApplication : Application() {
             androidLogger()
             androidContext(this@ImageBucketApplication)
             Injector().apply {
-                loadKoinModules(generateAppModules())
+                loadKoinModules(startModules())
             }
         }
     }

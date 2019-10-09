@@ -6,19 +6,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.stonetree.imagebucket.R
 import com.stonetree.imagebucket.gallery.model.GalleryModel
-import com.stonetree.imagebucket.gallery.view.IPicture
+import com.stonetree.imagebucket.gallery.view.Picture
 
-class GalleryAdapter(private val picture: IPicture) :
+class GalleryAdapter(private val picture: Picture) :
     ListAdapter<GalleryModel, GalleryViewHolder>(
         GalleryDiffCallback()
     ) {
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-        getItem(position).let { model ->
-            with(holder) {
-                itemView.tag = position
-                onBind(model)
-            }
+        val model = getItem(position)
+        with(holder) {
+            itemView.tag = position
+            onBind(model)
         }
     }
 

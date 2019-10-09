@@ -5,21 +5,21 @@ import com.bumptech.glide.Glide
 import com.stonetree.imagebucket.core.viewholder.BaseViewHolder
 import com.stonetree.imagebucket.databinding.ListItemMainBinding
 import com.stonetree.imagebucket.gallery.model.GalleryModel
-import com.stonetree.imagebucket.gallery.view.IPicture
+import com.stonetree.imagebucket.gallery.view.Picture
 
 class GalleryViewHolder(
     private val bind: ListItemMainBinding,
-    private val picture: IPicture
+    private val picture: Picture
 ) : BaseViewHolder<GalleryModel>(bind) {
 
-    override fun onBind(model: GalleryModel) {
+    override fun onBind(data: GalleryModel) {
         bind.listener = View.OnLongClickListener {
-            picture.delete(model.imageName)
+            picture.delete(data.imageName)
             true
         }
 
         Glide.with(bind.root.context)
-            .load(model.imageUrl)
+            .load(data.imageUrl)
             .into(bind.picture)
     }
 }

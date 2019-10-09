@@ -1,6 +1,6 @@
 package com.stonetree.imagebucket.gallery.view
 
-interface IPicture {
+interface Picture {
 
     fun delete(name: String)
 }
