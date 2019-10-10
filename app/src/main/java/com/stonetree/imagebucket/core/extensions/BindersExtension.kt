@@ -23,3 +23,4 @@ fun bindIsIdle(view: View, network: NetworkState?) {
         else -> view.visibility = VISIBLE
     }
 }
+

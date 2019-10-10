@@ -26,8 +26,6 @@ class GalleryAdapter(private val picture: Picture) :
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.list_item_main, parent, false
-            ),
-            picture
-        )
+            ), picture)
     }
 }
