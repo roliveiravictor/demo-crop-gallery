@@ -1,4 +1,4 @@
-package com.stonetree.imagebucket.core.extensions.core.extensions
+package com.stonetree.imagebucket.core.extensions
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,6 @@ import android.view.View.VISIBLE
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.stonetree.imagebucket.R
-import com.stonetree.imagebucket.core.extensions.bindIsGone
-import com.stonetree.imagebucket.core.extensions.bindIsIdle
 import com.stonetree.imagebucket.core.network.NetworkState.Companion.LOADING
 import com.stonetree.imagebucket.core.network.NetworkState.Companion.LOADED
 import com.stonetree.imagebucket.core.network.NetworkState.Companion.error

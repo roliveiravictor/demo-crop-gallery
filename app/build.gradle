@@ -29,6 +29,7 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled true
+            multiDexEnabled = true
         }
         release {
             minifyEnabled false
@@ -98,7 +99,10 @@ dependencies {
     testImplementation "androidx.test:core:$test_core_version"
     testImplementation "androidx.test.ext:junit:$androidx_junit_version"
 
+    androidTestImplementation "androidx.arch.core:core-testing:$andx_core_testing_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$esperocore_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_core_version"
+    androidTestImplementation "androidx.test.ext:junit:$andx_junit_version"
 }
 
 apply from: rootProject.file('sca-config/static-analysis.gradle')

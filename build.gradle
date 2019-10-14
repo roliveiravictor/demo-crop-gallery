@@ -27,6 +27,10 @@ buildscript {
         mockito_version = '2.28.2'
         robolectric_version = '4.3'
         koin_test_version = '2.0.1'
+        andx_junit_version = '1.1.1'
+        andx_core_testing_version = '2.0.1'
+        andx_core_testing_version = '2.1.0'
+        espresso_core_version = '3.2.0'
     }
 
     repositories {
